@@ -24,9 +24,8 @@ namespace Movement
                 ref var speed = ref movableComponent.Speed;
 
                 var rawDirection = (transform.right * direction.x);
-                
-                controller.Move(rawDirection * speed * Time.deltaTime);
-
+                var force = rawDirection * speed * Time.deltaTime;
+                controller.Move(force.x);
             }
         }
     }

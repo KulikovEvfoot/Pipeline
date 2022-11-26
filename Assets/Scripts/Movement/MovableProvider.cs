@@ -1,5 +1,5 @@
 using System;
-using UnityEngine;
+using Player;
 using Voody.UniLeo;
 
 namespace Movement
@@ -7,7 +7,7 @@ namespace Movement
     [Serializable]
     public struct Movable
     {
-        public CharacterController Controller;
+        public CharacterController2D Controller;
         public float Speed;
     }
 

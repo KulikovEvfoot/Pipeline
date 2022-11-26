@@ -1,4 +1,6 @@
 using Leopotam.Ecs;
+using Movement;
+using Player;
 using UnityEngine;
 using Voody.UniLeo;
 
@@ -9,44 +11,30 @@ namespace Initialization
         EcsWorld _world;
         EcsSystems _systems;
 
-        private void Start () 
+        private void Start() 
         {
             _world = new EcsWorld ();
             _systems = new EcsSystems(_world);
 
+            _systems
+                .Add(new PlayerInputSystem())
+                .Add(new MovementSystem())
+                ;
+            
             _systems.ConvertScene();
-
-            AddInjection();
-            AddSystems();
-            AddOneFrames();
-            
-            _systems.Init ();
+            _systems.Init();
         }
 
-        private void AddInjection()
+
+        private void Update()
         {
-            
-        }
-        
-        private void AddSystems()
-        {
-            
+            _systems.Run();
         }
 
-        private void AddOneFrames()
+        private void OnDestroy() 
         {
-            
-        }
-
-        private void Update ()
-        {
-            _systems.Run ();
-        }
-
-        private void OnDestroy () 
-        {
-            _systems.Destroy ();
-            _world.Destroy ();
+            _systems.Destroy();
+            _world.Destroy();
         }
     }
 }

@@ -19,9 +19,10 @@ namespace Initialization
             _fixedUpdate = new EcsSystems(_world);
 
             _update
-                .Add(new PlayerInputSystem())
+                .Add(new PlayerMovingInputSystem())
+                .Add(new PlayerJumpingInputSystem())
                 .Add(new JumpSystem())
-                .OneFrame<JumpComponent>()
+                .OneFrame<JumpEvent>()
                 ;
 
             _fixedUpdate
@@ -29,7 +30,6 @@ namespace Initialization
                 ;
             
             _update.ConvertScene();
-            _fixedUpdate.ConvertScene();
             
             _update.Init();
             _fixedUpdate.Init();

@@ -4,12 +4,11 @@ using Voody.UniLeo;
 
 namespace InteractionEntity
 {
+    public class BodyProvider : MonoProvider<Body> {}
+
     [Serializable]
     public struct Body
     {
         public Transform Transform;
     }
-    
-    public class BodyProvider : MonoProvider<Body> {}
-    
 }

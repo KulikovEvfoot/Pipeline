@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Player
@@ -7,6 +6,8 @@ namespace Player
     [RequireComponent(typeof(Rigidbody2D))]
     public class CharacterController2D : MonoBehaviour
     {
+        public bool IsGround => _groundController.IsGround;
+        
         public void Move(float xForce)
         {
             _rigidbody.velocity = new Vector2(xForce, _rigidbody.velocity.y);
@@ -19,11 +20,13 @@ namespace Player
 
         private void Awake()
         {
-            _boxCollider = GetComponent<BoxCollider2D>();
+            _bodyCollider = GetComponent<BoxCollider2D>();
             _rigidbody = GetComponent<Rigidbody2D>();
+            
         }
         
-        private BoxCollider2D _boxCollider;
+        private BoxCollider2D _bodyCollider;
         private Rigidbody2D _rigidbody;
+        [SerializeField] private CharacterGroundController2D _groundController;
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Player
 {
-    public class PlayerInputSystem : IEcsRunSystem
+    public class PlayerMovingInputSystem : IEcsRunSystem
     {
         private EcsWorld _world;
         private EcsFilter<PlayerTag, DirectionComponent> _direction;
@@ -19,11 +19,6 @@ namespace Player
             {
                 ref var direction = ref _direction.Get2(i).Direction;
                 direction.x = _moveX;
-            }
-
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                _world.NewEntity().Replace(new JumpComponent());
             }
         }
     }
